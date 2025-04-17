@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Usamos mercadopago.default para acceder a la configuración y funciones
 mercadopago.default.configure({
   access_token: process.env.MP_ACCESS_TOKEN
 });

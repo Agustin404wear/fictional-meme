@@ -1,23 +1,21 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import cors from 'cors';
 import dotenv from 'dotenv';
-import productosRouter from './routes/productos.js';
+import cors from 'cors';
+import productosRoutes from './routes/productos.js';
 
 dotenv.config();
-
 const app = express();
-app.use(cors());
 app.use(express.json());
-
-const PORT = process.env.PORT || 3001;
+app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB conectado'))
-  .catch(err => console.error('Error de conexión a MongoDB:', err));
+  .catch((err) => console.log(err));
 
-app.use('/api', productosRouter);
+app.use('/api', productosRoutes);
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+const port = process.env.PORT || 10000;
+app.listen(port, () => {
+  console.log(`Servidor corriendo en puerto ${port}`);
 });
